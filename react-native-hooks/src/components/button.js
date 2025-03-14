@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 const Container = styled.TouchableOpacity`
-    backgrond-color: #3498db;
+    background-color: #3498db;
     border-radius: 15px;
     padding: 15px 30px;
     margin: 10px 0px;
@@ -22,3 +22,5 @@ const Button = ({ title, onPress }) => {
         </Container>
     );
 };
+
+export default Button;

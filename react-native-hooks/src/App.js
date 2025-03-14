@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import { Text } from "react-native";
+import Counter from "./components/Counter";
+import Form from "./components/Form";
+import Button from "./components/Button";
+import Length from "./components/Length";
 const Container = styled.View`
     flex: 1;
     background-color: #fff;
@@ -9,9 +13,10 @@ const Container = styled.View`
 `;
 
 const App = () => {
+    const [isVisible, SetIsVisible] = useState(true);
     return (
         <Container>
-            <Text>Hello</Text>
+            <Length />
         </Container>
     );
 };
