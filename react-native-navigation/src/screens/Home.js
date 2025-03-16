@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-native";
 import styled from "styled-components/native";
 
-const Container = styled.View`
+const Container = styled.SafeAreaView`
     align-items: center;
 `;
 

@@ -21,7 +21,7 @@ const items = [
 
 const List = ({ navigation }) => {
     const _onPress = (item) => {
-        navigation.navigate("Item", { id: item._id, name: item.name });
+        navigation.navigate("Detail", { id: item._id, name: item.name });
     };
     return (
         <Container>
