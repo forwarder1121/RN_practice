@@ -17,6 +17,10 @@ export const theme = {
     inputPlaceholder: colors.grey_1,
     inputBorder: colors.grey_1,
     errorText: colors.red,
+    buttonBackground: colors.blue,
+    buttonTitle: colors.white,
+    buttonUnfilledTitle: colors.blue,
+    headerTintColor: colors.black,
 };
 
 export default theme;
