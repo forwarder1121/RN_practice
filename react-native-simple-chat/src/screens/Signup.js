@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { Image, Input, Button } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { validEmail, removeWhitespace } from "../utils/common";
-
+import { images } from "../utils/images";
 const Container = styled.View`
     flex: 1;
     justify-content: center;
@@ -22,6 +22,7 @@ const ErrorText = styled.Text`
 `;
 
 const Signup = () => {
+    const [photoUrl, setPhotoUrl] = useState(images.photo);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -65,7 +66,7 @@ const Signup = () => {
     return (
         <KeyboardAwareScrollView extraScrollHeight={20}>
             <Container>
-                <Image rounded />
+                <Image rounded url={photoUrl} />
                 <Input
                     label="Name"
                     value={name}
