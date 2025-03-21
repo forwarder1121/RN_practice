@@ -4,6 +4,8 @@ import { Image, Input, Button } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { validEmail, removeWhitespace } from "../utils/common";
 import { images } from "../utils/images";
+import { Alert } from "react-native";
+import { signup } from "../utils/firebase";
 const Container = styled.View`
     flex: 1;
     justify-content: center;
@@ -45,7 +47,7 @@ const Signup = () => {
             } else if (password.length < 6) {
                 _errorMessage =
                     "The passwor must contain 6 characters at least.";
-            } else if (password !== eeeee) {
+            } else if (password !== passwordConfirm) {
                 _errorMessage = "Passwords need to match.";
             } else {
                 _errorMessage = "";
@@ -62,7 +64,15 @@ const Signup = () => {
         );
     }, [name, email, password, passwordConfirm, errorMessage]);
 
-    const _handleSignupButtonPress = () => {};
+    const _handleSignupButtonPress = async () => {
+        try {
+            const user = await signup({ email, password });
+            console.log(user);
+            Alert.alert("Sinup Success", user.email);
+        } catch (e) {
+            Alert.alert("Signup Error", e.message);
+        }
+    };
     return (
         <KeyboardAwareScrollView extraScrollHeight={20}>
             <Container>

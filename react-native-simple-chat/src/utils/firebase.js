@@ -1,18 +1,27 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+} from "firebase/auth";
 import config from "../../firebase.json";
 
 // Firebase 앱 초기화
 const app = initializeApp(config);
 
 // Firebase Auth 인스턴스 가져오기
-const Auth = getAuth(app);
+const auth = getAuth(app);
 
 export const login = async ({ email, password }) => {
-    const userCredential = await signInWithEmailAndPassword(
-        Auth,
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    return user;
+};
+
+export const signup = async ({ email, password }) => {
+    const { user } = await createUserWithEmailAndPassword(
+        auth,
         email,
         password
     );
-    return userCredential.user; // ✅ userCredential 객체에서 user 추출
+    return user;
 };
