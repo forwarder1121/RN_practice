@@ -23,6 +23,8 @@ export const theme = {
     headerTintColor: colors.black,
     imageButtonBackground: colors.grey_1,
     imageButtonIcon: colors.white,
+    spinnerBackground: colors.black,
+    spinnerIndicator: colors.white,
 };
 
 export default theme;
