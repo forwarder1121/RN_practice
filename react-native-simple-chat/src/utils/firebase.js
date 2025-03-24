@@ -92,3 +92,7 @@ export const signup = async ({ email, password, name, photoUrl }) => {
     console.log("📝 프로필 업데이트 완료:", name, storageUrl);
     return user;
 };
+
+export const logout = async () => {
+    return await Auth.signOut();
+};

@@ -6,7 +6,7 @@ import { validEmail, removeWhitespace } from "../utils/common";
 import { images } from "../utils/images";
 import { Alert } from "react-native";
 import { signup } from "../utils/firebase";
-import { ProgressContext } from "../contexts";
+import { ProgressContext, UserContext } from "../contexts";
 const Container = styled.View`
     flex: 1;
     justify-content: center;
@@ -25,6 +25,7 @@ const ErrorText = styled.Text`
 `;
 
 const Signup = () => {
+    const { dispatch } = useContext(UserContext);
     const { spinner } = useContext(ProgressContext);
     const [photoUrl, setPhotoUrl] = useState(images.photo);
     const [name, setName] = useState("");
@@ -71,6 +72,7 @@ const Signup = () => {
             spinner.start();
             const user = await signup({ email, password, name, photoUrl });
             console.log(user);
+            dispatch(user);
             Alert.alert("Sinup Success", user.email);
         } catch (e) {
             Alert.alert("Signup Error", e.message);
