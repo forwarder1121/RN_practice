@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Profile, Channel, ChannelList } from "../screens";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -16,8 +16,18 @@ const TabBarIcon = ({ focused, name }) => {
     );
 };
 
-const MainTab = () => {
+const MainTab = ({ navigation, route }) => {
     const theme = useContext(ThemeContext);
+
+    useEffect(() => {
+        const titles = route.state?.routeNames || ["Channels"];
+        const index = route.state?.index || 0;
+        navigation.setOptions({
+            headerTitle: titles[index],
+            headerShown: false,
+        });
+    }, [route]);
+
     return (
         <Tab.Navigator
             screenOptions={{
@@ -25,7 +35,7 @@ const MainTab = () => {
                 tabBarInactiveTintColor: theme.tabInactiveColor,
             }}>
             <Tab.Screen
-                name="Channel List"
+                name="Channels"
                 options={{
                     tabBarIcon: ({ focused }) =>
                         TabBarIcon({
