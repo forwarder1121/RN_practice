@@ -103,11 +103,17 @@ export const getCurrentUser = () => {
 };
 
 export const updateUserPhoto = async (photoUrl) => {
-    const user = Auth.currentUser;
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    console.log("✅ 현재 유저:", user);
+
     const storageUrl = photoUrl.startsWith("https")
         ? photoUrl
-        : await uploadImage(photoUrl);
-    await user.updateProfile({ photoURL: storageUrl });
+        : await uploadImage(photoUrl, user.uid);
+
+    await updateProfile(user, { photoURL: storageUrl }); // ✅ 최신 방식
+
     return {
         name: user.displayName,
         email: user.email,
