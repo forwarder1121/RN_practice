@@ -7,10 +7,11 @@ const Container = styled.View`
     background-color: ${({ theme }) => theme.background};
 `;
 
-const Channel = () => {
+const Channel = ({ route }) => {
     return (
         <Container>
-            <Text styled={{ fontSize: 24 }}>Channel</Text>
+            <Text styled={{ fontSize: 24 }}>ID:{route.params?.id}</Text>
+            <Text styled={{ fontSize: 24 }}>Title:{route.params?.title}</Text>
         </Container>
     );
 };
