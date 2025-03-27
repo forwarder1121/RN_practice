@@ -24,13 +24,22 @@ const MainTab = ({ navigation, route }) => {
         const index = route.state?.index || 0;
         navigation.setOptions({
             headerTitle: titles[index],
-            headerShown: false,
+            headerRight: () =>
+                index === 0 && (
+                    <MaterialIcons
+                        name="add"
+                        size={26}
+                        style={{ margin: 10 }}
+                        onPress={() => navigation.navigate("Channel Creation")}
+                    />
+                ),
         });
     }, [route]);
 
     return (
         <Tab.Navigator
             screenOptions={{
+                headerShown: false,
                 tabBarActiveTintColor: theme.tabActiveColor,
                 tabBarInactiveTintColor: theme.tabInactiveColor,
             }}>
