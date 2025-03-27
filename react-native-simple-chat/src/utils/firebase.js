@@ -9,6 +9,8 @@ import {
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import config from "../../firebase.json";
 import * as ImageManipulator from "expo-image-manipulator";
+import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
+import firebase from "firebase/compat/app";
 
 // 1. Firebase 앱 초기화
 const app = initializeApp(config);
@@ -119,4 +121,18 @@ export const updateUserPhoto = async (photoUrl) => {
         email: user.email,
         photoUrl: user.photoURL,
     };
+};
+export const DB = getFirestore(app);
+
+export const createChannel = async ({ title, description }) => {
+    const newChannelRef = doc(collection(DB, "channels")); // Firestore에서 자동 ID 생성
+    const id = newChannelRef.id;
+    const newChannel = {
+        id,
+        title,
+        description,
+        createdAt: Date.now(),
+    };
+    await setDoc(newChannelRef, newChannel);
+    return id;
 };
